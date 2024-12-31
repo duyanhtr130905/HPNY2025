@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Đếm ngược</title>
+  <style>
+    body {
+      background-color: black;
+      overflow: hidden; 
+    }
+
+    #countdown {
+      font-size: 10em;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 20vh;
+      color: white;
+      text-shadow: 0 0 20px white; /* Thêm hiệu ứng đổ bóng cho chữ */
+
+      /* Thêm hiệu ứng lấp lánh */
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="countdown">5</div>
+  <audio src="ABBA - Happy New Year.mp3" autoplay loop></audio>
+  <audio src="Clock Tick Sound Effect.mp3" id="tickSound"></audio> <script>
+    let count = 5;
+    const countdownElement = document.getElementById('countdown');
+    const tickSound = document.getElementById('tickSound');
+
+    const intervalId = setInterval(() => {
+      if (count >= 0) {
+        countdownElement.textContent = count;
+        tickSound.currentTime = 0; // Reset âm thanh về đầu
+        tickSound.play(); // Phát âm thanh "tích tắc"
+        count--;
+      } else {
+        clearInterval(intervalId);
+        window.location.href = "hpny.html"; 
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
